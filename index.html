@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <meta name="description" content="UChicago Large Language Models course (Spring 2025) covering mechanistic interpretability, alignment, and agents.">
+    <meta name="author" content="Chenhao Tan">
+    <meta property="og:title" content="UChicago Large Language Models Course">
+    <meta property="og:description" content="Advanced LLM course at University of Chicago covering mechanistic interpretability, alignment, and agents.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uchicago-llm-course.github.io/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="UChicago Large Language Models Course">
+    <meta name="twitter:description" content="Advanced LLM course at University of Chicago covering mechanistic interpretability, alignment, and agents.">
+    <title>UChicago Large Language Models Course</title>
+    <link rel="canonical" href="https://uchicago-llm-course.github.io/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand brand" href="index.html">CMSC 25750/35750</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-right">
+              <a href="index.html#coursework">Coursework</a>
+            </li>
+            <li class="navbar-right">
+              <a href="index.html#schedule">Schedule</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="header">
+      <a href="https://ci.cs.uchicago.edu/">
+        <img src="images/logo.jpg" alt="University of Chicago Communication &amp; Intelligence Logo" class="logo-left">
+      </a>
+      <div style="text-align:center">
+        <h1>CMSC 25750/35750: Large Language Models</h1>
+        <h3>University of Chicago / Spring 2026</h3>
+      </div>
+    </div>
+    <div class="container sec" id="people">
+      <div class="col">
+        <h2>Course Staff</h2>
+        <div class="instructor">
+          <a href="https://chenhaot.com">
+            <div class="instructorphoto">
+              <img src="images/chenhao_tan.jpg" alt="Chenhao Tan">
+            </div>
+            <div>Chenhao Tan</div>
+          </a>
+          <div>Instructor</div>
+        </div>
+        <div class="instructor">
+          <a href="https://dangng2004.github.io/">
+            <div class="instructorphoto">
+              <img src="images/dang_nguyen.png" alt="Dang Nguyen">
+            </div>
+            <div>Dang Nguyen</div>
+          </a>
+          <div>Teaching Assistant</div>
+        </div>
+        <div class="instructor">
+          <a href="#">
+            <div class="instructorphoto">
+              <img src="images/harvey_fu.jpg" alt="Harvey Fu">
+            </div>
+            <div>Harvey Fu</div>
+          </a>
+          <div>Teaching Assistant</div>
+        </div>
+      </div>
+    </div>
+    <div class="container sec" id="logistics">
+      <h2>Logistics</h2>
+      <ul>
+        <li>
+          <b>Lectures:</b> Mondays/Wednesdays 3-4:20, Ryerson 276
+        </li>
+        <li>
+          <b>Office hours:</b> TBD
+        </li>
+        <li>
+          <b>Contact:</b> Email (chenhao@uchicago.edu, dangnguyen@uchicago.edu, harveyfu@uchicago.edu); Ed Discussion Forum on Canvas.
+        </li>
+      </ul>
+    </div>
+    <div class="container sec" id="content">
+      <h2>Content</h2>
+      <h3>What is this course about?</h3>
+      <p>Large language models are rapidly reshaping machine learning research and practice, yet many questions remain about how they work, how to ensure they behave as intended, and how to build reliable systems on top of them. This course dives into three core areas at the frontier of LLM research: interpretability, alignment, and agents. Students will learn to analyze circuits and internal representations, probe the geometry of model features through sparse autoencoders and linear representations, and reason about scalable oversight and emergent misalignment. The course will also cover how LLMs are deployed as autonomous agents for software engineering and scientific research, how they are used to simulate human behavior, and how they can complement human decision-making. This is an advanced course and assumes familiarity with transformers and language modeling. We will read and discuss recent publications, with importance placed on analyzing, interpreting, and making arguments from necessarily incomplete empirical evidence. Students will get hands-on experience through assignments and a quarter-long research project that pushes into open problems in the field.</p>
+      <h3>Prerequisites</h3>
+      <ul>
+        <li><b>CMSC 25700/CMSC 35100:</b> Natural Language Processing</li>
+        <li><b>DATA 37712/CMSC 37712:</b> Foundations of Machine Learning II: Generative Models</li>
+      </ul>
+      You are expected have understoond the transformer architecture and have experience with training and analyzing language models. Research experience is preferred too.
+    </div>
+    <div class="container sec" id="coursework" style="margin-top:-20px">
+      <br>
+      <h2>Coursework</h2>
+      <h3>Grading</h3>
+      <ul>
+        <li>Quizzes: 20%</li>
+        <li>Roast or Imagine: 10%</li>
+        <li>Assignments: 20%</li>
+        <li>Project: 50%</li>
+      </ul>
+      <h3>Quizzes</h3>
+      <p>Short quizzes will be held at the beginning of the lecture to assess understanding of the readings.</p>
+      <h3>Roast or Imagine</h3>
+      <p>Students will either critically analyze (roast) a paper or propose (imagine) an extension or question from the course readings.</p>
+      <h3>Assignments</h3>
+      <p>There will be three assignments throughout the quarter.</p>
+      <h3>Project</h3>
+      <ul>
+        <li><b>Project Proposal:</b> Due Friday, March 28</li>
+        <li><b>Proposal Revision:</b> Due Friday, April 4</li>
+        <li><b>Weekly Blog Entries:</b> April 10, April 17, April 24, May 1, May 15</li>
+        <li><b>First Draft:</b> Due Thursday, May 8</li>
+        <li><b>Final Report:</b> Due Thursday, May 22</li>
+      </ul>
+      <h3>Textbook</h3>
+      <p>There is no required textbook. Reading materials for each week will be a combination of technical papers and online resources.</p>
+      <h3>Honor Code</h3>
+      <p>We expect students to not look at solutions or implementations online. Like all other classes at UChicago, we take academic honesty very seriously. Please make sure to read the UChicago <a href="https://college.uchicago.edu/student-services/academic-integrity-student-conduct">Academic Honesty</a> page.</p>
+      <h3>Collaboration policy</h3>
+      <p>For individual assignments, collaboration with fellow students is encouraged as long as they are properly disclosed for each submission. However, you should not share any written work or code for your assignments. After discussing a problem with others, you should write the solution by yourself. For final projects, you are expected to work in groups of 1-2, preferrably 1.</p>
+      <h3>AI tools policy</h3>
+      <p>Using generative AI tools such as Claude Code and ChatGPT is allowed as long as they are properly disclosed for each submission. You are encouraged to use AI (e.g., <a href="https://github.com/ChicagoHAI/NeuriCo/">NeuriCo</a>) heavily for the project.</p>
+      <h3>Additional course policies can be found on Canvas.</h3>
+      <h3>Submitting Coursework</h3>
+      <ul>
+        <li>All coursework should be submitted via Gradescope by the deadline.</li>
+      </ul>
+      <h3>Late Days</h3>
+      <ul>
+        <li>Each student has 3 late days to use throughout the quarter for assignments. No late submissions will be accepted for project related work.</li>
+      </ul>
+    </div>
+    <div class="container sec" id="schedule" style="margin-top:-20px">
+      <br>
+      <h2>Preliminary Schedule</h2>
+      <table class="table">
+        <colgroup>
+          <col style="width:5%">
+          <col style="width:12%">
+          <col style="width:25%">
+          <col style="width:43%">
+          <col style="width:15%">
+        </colgroup>
+        <thead>
+          <tr class="active">
+            <th>#</th>
+            <th>Date</th>
+            <th>Topic</th>
+            <th>Readings</th>
+            <th>Deadlines</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="active">
+            <td colspan="5"><b>Interpretability</b></td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Mon Mar 23</td>
+            <td>Introduction</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Wed Mar 25</td>
+            <td>Attention</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/1906.04341">What Does BERT Look At? An Analysis of BERT's Attention</a> by Clark et al., 2019;<br>
+              <a href="https://arxiv.org/abs/2211.00593">Interpretability in the Wild: a Circuit for Indirect Object Identification in GPT-2 small</a> by Wang et al., 2022;<br>
+              <a href="https://arxiv.org/abs/2310.15213">Function Vectors in Large Language Models</a> by Todd et al., 2023.<br>
+              Play around with <a href="https://github.com/jessevig/bertviz">BertViz</a> by Jesse Vig for at least 10 minutes.
+            </td>
+            <td>
+              Project Proposal <b><font color="red">due</font></b> (Fri Mar 28)
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Mon Mar 30</td>
+            <td>MLPs and Factual Recall</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2012.14913">Transformer Feed-Forward Layers Are Key-Value Memories</a> by Geva et al., 2020;<br>
+              <a href="https://arxiv.org/abs/2202.05262">Locating and Editing Factual Associations in GPT</a> by Meng et al., 2022;<br>
+              <a href="https://arxiv.org/abs/2405.02421">What does the Knowledge Neuron Thesis Have to do with Knowledge?</a> by Niu et al., 2024
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Wed Apr 1</td>
+            <td>Transformer Circuits</td>
+            <td>
+              Readings:
+              <a href="https://transformer-circuits.pub/2021/framework/index.html">A Mathematical Framework for Transformer Circuits</a> by Elhage et al., 2021 (read until but not including Two Layer Transformers);<br>
+              <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a> by Olsson et al., 2022 (read through "Arguments");<br>
+              <a href="https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">interpreting GPT: the logit lens</a> by nostalgebraist
+            </td>
+            <td>
+              Proposal Revision <b><font color="red">due</font></b> (Fri Apr 4)
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Mon Apr 6</td>
+            <td>Geometry of Representations (guest lecture)</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2311.03658">The Linear Representation Hypothesis and the Geometry of Large Language Models</a> by Park et al., 2023;<br>
+              <a href="https://arxiv.org/abs/2602.15293">The Information Geometry of Softmax: Probing and Steering</a> by Park et al., 2026;<br>
+              <a href="https://arxiv.org/abs/2310.06824">The Geometry of Truth</a> by Marks &amp; Tegmark, 2023 (main body, first ten pages)
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Wed Apr 8</td>
+            <td>Superposition &amp; Sparse Autoencoders</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2209.10652">Toy Models of Superposition</a> by Elhage et al., 2022;<br>
+              <a href="https://transformer-circuits.pub/2023/monosemantic-features">Towards Monosemanticity: Decomposing Language Models With Dictionary Learning</a> by Bricken et al., 2023;<br>
+              <a href="https://arxiv.org/abs/2406.04093">Scaling and Evaluating Sparse Autoencoders</a> by Gao et al., 2024
+            </td>
+            <td>
+              Blog Entry 1 <b><font color="red">due</font></b> (Fri Apr 10)
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Mon Apr 13</td>
+            <td>Chain of Thought</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2305.04388">Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting</a> by Turpin et al., 2023;<br>
+              <a href="https://arxiv.org/abs/2503.11926">Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation</a> by Baker et al., 2025;<br>
+              <a href="https://arxiv.org/abs/2507.11473">Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety</a> by Korbak et al., 2025
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Wed Apr 15</td>
+            <td>Interpretability for Science</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2006.15222">BERTology Meets Biology: Interpreting Attention in Protein Language Models</a> by Vig et al., 2020;<br>
+              <a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636901v1">From Mechanistic Interpretability to Mechanistic Biology: Training, Evaluating, and Interpreting Sparse Autoencoders on Protein Language Models</a> by Lam et al., 2025;<br>
+              <a href="https://www.pnas.org/doi/10.1073/pnas.2406285121">Protein Language Models Learn Evolutionary Statistics of Interacting Sequence Motifs</a> by Zhang et al., 2024
+            </td>
+            <td>
+              Blog Entry 2 <b><font color="red">due</font></b> (Fri Apr 17)
+            </td>
+          </tr>
+          <tr class="active">
+            <td colspan="5"><b>Alignment</b></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Mon Apr 20</td>
+            <td>The Alignment Problem</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/1606.06565">Concrete Problems in AI Safety</a> by Amodei et al., 2016;<br>
+              <a href="https://www.alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like">What Failure Looks Like</a> by Christiano (blog post);<br>
+              <a href="https://arxiv.org/abs/2311.08379">Scheming AIs: Will AIs Fake Alignment During Training in Order to Get Power?</a> by Carlsmith, 2023
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Wed Apr 22</td>
+            <td>Scalable Oversight</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2211.03540">Measuring Progress on Scalable Oversight for Large Language Models</a> by Bowman et al., 2022;<br>
+              <a href="https://arxiv.org/abs/2402.06782">Debating with More Persuasive LLMs Leads to More Truthful Answers</a> by Khan et al., 2024;<br>
+              <a href="https://arxiv.org/abs/2407.04622">On Scalable Oversight with Weak LLMs Judging Strong LLMs</a> by Kenton et al., 2024
+            </td>
+            <td>
+              Blog Entry 3 <b><font color="red">due</font></b> (Fri Apr 24)
+            </td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Mon Apr 27</td>
+            <td>Emergent Misalignment</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2502.17424">Emergent Misalignment: Narrow Finetuning Can Produce Broadly Misaligned LLMs</a> by Betley et al., 2025;<br>
+              <a href="https://arxiv.org/abs/1906.01820">Risks from Learned Optimization in Advanced Machine Learning Systems</a> by Hubinger et al., 2019;<br>
+              <a href="https://arxiv.org/abs/2401.05566">Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training</a> by Hubinger et al., 2024
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Wed Apr 29</td>
+            <td>Sycophancy</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2310.13548">Towards Understanding Sycophancy in Language Models</a> by Sharma et al., 2023;<br>
+              <a href="https://arxiv.org/abs/2406.10162">Sycophancy to Subterfuge: Investigating Reward Tampering in Language Models</a> by Denison et al., 2024;<br>
+              <a href="https://arxiv.org/abs/2307.15217">Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback</a> by Casper et al., 2023
+            </td>
+            <td>
+              Blog Entry 4 <b><font color="red">due</font></b> (Fri May 1)
+            </td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Mon May 4</td>
+            <td>Finding Novel Behavior</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2412.14093">Alignment Faking in Large Language Models</a> by Greenblatt et al., 2024;<br>
+              <a href="https://arxiv.org/abs/2412.04984">Frontier Models are Capable of In-context Scheming</a> by Meinke et al., 2024;<br>
+              <a href="https://arxiv.org/abs/2406.07358">AI Sandbagging: Language Models can Strategically Underperform on Evaluations</a> by van der Weij et al., 2024
+            </td>
+            <td></td>
+          </tr>
+          <tr class="active">
+            <td colspan="5"><b>Agents</b></td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Wed May 6</td>
+            <td>Agents &amp; Agentic RL</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a> by Yao et al., 2022;<br>
+              <a href="https://arxiv.org/abs/2310.06770">SWE-bench: Can Language Models Resolve Real-World GitHub Issues?</a> by Jimenez et al., 2023;<br>
+              <a href="https://arxiv.org/abs/2407.01489">Agentless: Demystifying LLM-based Software Engineering Agents</a> by Xia et al., 2024
+            </td>
+            <td>
+              First Draft <b><font color="red">due</font></b> (Fri May 8)
+            </td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Mon May 11</td>
+            <td>Research Agents</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2506.13131">AlphaEvolve: A Gemini-based Coding Agent for Mathematical and Algorithmic Discovery</a> by Novikov et al., 2025;<br>
+              <a href="https://arxiv.org/abs/2602.18458">The Story is Not the Science: Execution-Grounded Evaluation of Mechanistic Interpretability Research</a> by Bai et al., 2026;<br>
+              <a href="https://arxiv.org/abs/2501.04227">Agent Laboratory: Using LLM Agents as Research Assistants</a> by Schmidgall et al., 2025
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Wed May 13</td>
+            <td>Simulation</td>
+            <td>
+              Readings:
+              <a href="https://arxiv.org/abs/2304.03442">Generative Agents: Interactive Simulacra of Human Behavior</a> by Park et al., 2023;<br>
+              <a href="https://arxiv.org/abs/2209.06899">Out of One, Many: Using Language Models to Simulate Human Samples</a> by Argyle et al., 2022;<br>
+              <a href="https://www.cambridge.org/core/journals/political-analysis/article/synthetic-replacements-for-human-survey-data-the-perils-of-large-language-models/B92267DC26195C7F36E63EA04A47D2FE">Synthetic Replacements for Human Survey Data? The Perils of Large Language Models</a> by Bisbee et al., 2024
+            </td>
+            <td>
+              Blog Entry 5 <b><font color="red">due</font></b> (Fri May 15)
+            </td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>Mon May 18</td>
+            <td>Complementary AI</td>
+            <td>
+              Readings:
+              <a href="https://www.pnas.org/doi/10.1073/pnas.2214840120">Superhuman Artificial Intelligence Can Improve Human Decision-Making by Increasing Novelty</a> by Shin et al., 2023;<br>
+              <a href="https://arxiv.org/abs/2601.20245">How AI Impacts Skill Formation</a> by Shen and Tamkin, 2026;<br>
+              <a href="https://arxiv.org/abs/2202.04092">Machine Explanations and Human Understanding</a> by Chen et al., 2022
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>Wed May 20</td>
+            <td>Final Presentations</td>
+            <td></td>
+            <td>
+              Final Report <b><font color="red">due</font></b> (Fri May 22)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="container sec" id="acknowledgments">
+      <h2>Acknowledgments</h2>
+      <p>This course website is adapted from the <a href="https://stanford-cs336.github.io/spring2025/">Stanford CS336</a> course website.</p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
