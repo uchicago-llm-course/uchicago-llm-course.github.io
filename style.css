@@ -268,17 +268,10 @@ h3 {
     white-space: nowrap;
   }
 
-  #schedule td:nth-of-type(1) { font-weight: 500; }
-  #schedule td:nth-of-type(1):before {
-    content: "Date:";
-    font-weight: 300;
-  }
-  #schedule td:nth-of-type(2) { font-weight: 500; }
-  #schedule td:nth-of-type(2):before {
-    content: "Description:";
-    font-weight: 300;
-  }
-  #schedule td:nth-of-type(4):before { content: "Events:"; }
+  #schedule td:nth-of-type(1):before { content: "#:"; }
+  #schedule td:nth-of-type(2):before { content: "Date:"; }
+  #schedule td:nth-of-type(3):before { content: "Topic:"; }
+  #schedule td:nth-of-type(4):before { content: "Readings:"; }
   #schedule td:nth-of-type(5):before { content: "Deadlines:"; }
 }
 
